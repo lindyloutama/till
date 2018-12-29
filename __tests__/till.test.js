@@ -35,9 +35,9 @@ const items = [
   banana,
   orange,
   pineapple,
-  kiwi, 
+  kiwi,
 ];
-
+/*
 test('scan finds an item by its barcode', () => {
   expect(scan(456, items)).toEqual(banana);
 });
@@ -62,4 +62,30 @@ test('removeFromBasket removes the item with the given barcode from the basket',
   removeFromBasket(789, basket);
 
   expect(basket).not.toContain(orange);
+});*/
+
+describe('Till constructor', () => {
+  it('should create an object', () => {
+
+    expect(new Till()).toBeInstanceOf(Object)
+
+  });
+
+  it('should return item fruit from barcode', () => {
+    const till = new Till();
+    expect(till.scan(123)).toBe('apple')
+  });
+
+  it('should add a new fruit to the basket', () => {
+    const till = new Till();
+    till.addToBasket('apple');
+    expect(till.basket).toEqual(['apple'])
+  });
+
+  it('Remove an item from the basket', () => {
+    const till = new Till();
+    till.addToBasket('apple');
+    till.addToBasket('banana');
+    expect(till.removeFromBasket('apple')).toEqual(['banana'])
+  });
 });
